@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Deutsch
+        <-> IPA</title>
+    <meta name="description" content="Translate german to ipa">
+    <meta name="author" content="paszin">
+
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="bower_components/skeleton/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css">
+
+    <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="bower_components/blockUI/jquery.blockUI.js"></script>
+
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="bower_components/skeleton/images/favicon.png">
+
+</head>
+
+<body>
+    <h1>Deutsch ↔ IPA</h1>
+    <form>
+        <div class="row">
+            <div class="six columns">
+                <label for="text">Text</label>
+                <textarea class="u-full-width" placeholder="…" id="text"></textarea>
+            </div>
+            <div class="six columns">
+                <label for="translation">IPA</label>
+                <textarea class="u-full-width" placeholder="" id="translation" disabled></textarea>
+            </div>
+        </div>
+
+        <input class="button-primary" type="button" value="Übersetzen" id="translate" onClick="submitText()">
+    </form>
+
+</body>
+
+<script type="text/javascript">
+    function block() {
+        $.blockUI({
+            message: "Bitte warten...",
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        });
+    }
+
+    function submitText() {
+        if (document.getElementById("text").value.split(" ").length - 1 > 12) {
+            alert("Bitte gib einen kürzeren Text ein (12 Wörter maximal)")
+            return;
+        }
+        var data = {
+            "text": document.getElementById("text").value
+        };
+        block();
+        $.ajax({
+            url: 'https://vfwea7kgth.execute-api.eu-central-1.amazonaws.com/dev2',
+            type: 'post',
+            crossDomain: true,
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(data) {
+                $.unblockUI()
+                document.getElementById("translation").value = data.translation
+            }
+        });
+    }
+</script>
+
+</html>

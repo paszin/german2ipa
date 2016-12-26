@@ -1,0 +1,21 @@
+{
+  "name": "german2ipa",
+  "homepage": "https://github.com/paszin/german2ipa",
+  "authors": [
+    "paszin <pascalslogin@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "^2.0.4"
+  }
+}

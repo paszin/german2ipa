@@ -67,7 +67,9 @@ def extract(html):
 
 def word2ipa(word):
     url = "https://de.wiktionary.org/w/api.php?action=parse&format=json&prop=text&page={word}".format(word=word)
-    data = json.loads(urllib2.urlopen(url).read())
+    headers = { 'User-Agent' : 'paszin/german2ipa' }
+    req = urllib2.Request(url, None, headers)
+    data = json.loads(urllib2.urlopen(req).read())
     if data.get("error"):
         return False, word
     if data.get("parse"):

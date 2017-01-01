@@ -23,20 +23,18 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="bower_components/skeleton/css/normalize.css">
     <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="bower_components/blockUI/jquery.blockUI.js"></script>
 
-    <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="icon" type="image/png" href="bower_components/skeleton/images/favicon.png">
 
 </head>
 
 <body>
-    <h1>Deutsch ↔ IPA</h1>
+    <h1 class="centered">Deutsch ↔ IPA</h1>
     <form>
         <div class="row">
             <div class="six columns">
@@ -48,9 +46,17 @@
                 <textarea class="u-full-width" placeholder="" id="translation"></textarea>
             </div>
         </div>
+        <div class="row">
+          <div class="six columns centered">
+              <input class="button-primary" type="button" value="Übersetzen" id="translate" onClick="submitText()">
+          </div>
+        </div>
 
-        <input class="button-primary" type="button" value="Übersetzen" id="translate" onClick="submitText()">
     </form>
+
+    <p class="centered">
+      Deutsch ↔ IPA basiert auf <a href="https://de.wiktionary.org/">Wiktionary</a>. Die Richtigkeit ist nicht garantiert.
+    </p>
 
 </body>
 
